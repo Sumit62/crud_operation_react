@@ -27,10 +27,6 @@ export const CrudExample = () => {
           setValidated(true);
           return
         }
-
-
-
-
         setUser({...user, id: user.id + 1})
           setUserList([...userList, user])
       }  
@@ -40,9 +36,10 @@ export const CrudExample = () => {
       setUser({id: item.id, email: item.email, password: item.password});
       setUserList(userList.filter((ele)=>ele.id !== item.id))
     }
-    const onDeleteHandle = (id) => {
-      setUserList(userList.filter((item)=>item.id !== id));
-    }
+    const onDeleteHandle = id => {
+    setUserList(userList.filter(item => item.id !== id));
+    if (userList.length === 1) setUser({ ...user, id: 1 });
+  };
     return (
         <>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
